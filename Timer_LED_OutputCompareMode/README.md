@@ -34,6 +34,8 @@ Timer Output Compare (OC) mode is a feature that allows the timer to automatical
     {
         MX_GPIO_Init();
         MX_TIM3_Init();
+
+        HAL_TIM_OC_Start(&htim3, TIM_CHANNEL_3);
     }
 
     /**
@@ -70,7 +72,7 @@ Timer Output Compare (OC) mode is a feature that allows the timer to automatical
         {
             Error_Handler();
         }
-        sConfigOC.OCMode = TIM_OCMODE_TIMING;
+        sConfigOC.OCMode = TIM_OCMODE_TOGGLE;
         sConfigOC.Pulse = 0;
         sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
         sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
@@ -99,12 +101,14 @@ Timer Output Compare (OC) mode is a feature that allows the timer to automatical
 
 ### GPIO Configuration
 The Output Compare channel is automatically mapped to its corresponding GPIO pin:
-- TIM3_CH1 will be automatically configured as:
-  - Mode: Timer 3 Channel 1
+- TIM3_CH3 will be automatically configured as:
+  - Mode: Timer 3 Channel 3
   - GPIO Mode: Alternate Function
   - GPIO Pull-up/Pull-down: No pull-up and no pull-down
   - Maximum output speed: Low
-  - User Label: TIM3_CH1
+  - User Label: TIM3_CH3
+
+  ![alt text](docs/image2.png)
 
 ## Code Implementation
 
@@ -168,7 +172,7 @@ LED Toggle Period = 2 seconds
 ## Important Notes
 
 1. **Pin Selection**
-   - Check the STM32F767 datasheet for the correct TIM3_CH1 pin mapping
+   - Check the STM32F767 datasheet for the correct TIM3_CH3 pin mapping
    - Ensure the selected pin doesn't conflict with other functions
 
 2. **Clock Configuration**
